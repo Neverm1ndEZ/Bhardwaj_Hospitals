@@ -17,8 +17,6 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
-import java.util.Objects;
-
 public class MainActivity extends AppCompatActivity {
 
     RelativeLayout internetLayout, noInternetLayout;
@@ -40,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setDomStorageEnabled(true);
 
         webView.loadUrl("https://bhardwajhospitals.in/");
 
@@ -62,11 +61,17 @@ public class MainActivity extends AppCompatActivity {
                 internetLayout.setVisibility(View.GONE);
                 super.onReceivedError(view, request, error);
             }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                webView.loadUrl(url);
+                return true;
+            }
         });
 
         tryAgainButton.setOnClickListener(view -> {
             drawLayout();
-            webView.loadUrl("javascript:window.location.reload(true)");
+            webView.loadUrl("https://bhardwajhospitals.in");
         });
     }
 
@@ -89,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         if(isNetworkAvailable()){
             internetLayout.setVisibility(View.VISIBLE);
             noInternetLayout.setVisibility(View.GONE);
-            webView.loadUrl("javascript:window.location.reload(true)");
+            webView.loadUrl("https://bhardwajhospitals.in");
         } else {
             noInternetLayout.setVisibility(View.VISIBLE);
             internetLayout.setVisibility(View.GONE);
