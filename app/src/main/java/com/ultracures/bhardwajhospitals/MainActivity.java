@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Objects.requireNonNull(getSupportActionBar()).hide();
-
         internetLayout = findViewById(R.id.internetLayout);
         noInternetLayout = findViewById(R.id.noInternetLayout);
         webView = findViewById(R.id.webView);
@@ -66,12 +64,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        tryAgainButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawLayout();
-                webView.loadUrl("javascript:window.location.reload(true)");
-            }
+        tryAgainButton.setOnClickListener(view -> {
+            drawLayout();
+            webView.loadUrl("javascript:window.location.reload(true)");
         });
     }
 

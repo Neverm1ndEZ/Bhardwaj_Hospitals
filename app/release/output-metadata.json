@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.example.bhardwajhospitals",
+  "applicationId": "com.ultracures.bhardwajhospitals",
   "variantName": "release",
   "elements": [
     {
